@@ -1,63 +1,46 @@
-# Aspire – Business Banking Dashboard
+# Aspire – Card Management Dashboard
 
-A pixel-perfect implementation of the Aspire card management UI, built as a frontend coding challenge.
+A frontend implementation of the Aspire business banking UI built as part of a frontend engineering challenge.
+
+## Live Demo
+🔗 [your-deployment-url.vercel.app](https://your-deployment-url.vercel.app/cards)
 
 ## Tech Stack
-
-| Tool | Purpose |
-|------|---------|
-| Vite | Build tool / dev server |
-| React 18 | UI framework |
-| React Router v6 | Client-side routing |
-| Context API + useReducer | Global state management |
-| Tailwind CSS | Styling |
-| localStorage | Client-side persistence |
-
-## Project Structure
-
-```
-src/
-├── api/              # Dummy API layer (simulates server, reads/writes localStorage)
-├── components/
-│   ├── cards/        # Card-specific components (DebitCard, CardCarousel, CardActions…)
-│   ├── layout/       # AppLayout, Sidebar
-│   ├── modals/       # AddCardModal
-│   └── ui/           # Reusable atoms: Button, Input, Modal, Accordion, Badge, Icon, Spinner
-├── constants/        # App-wide constants (CARD_STATUS, NAV_ITEMS, CARD_ACTIONS…)
-├── context/          # CardContext — global state with useReducer
-├── hooks/            # useModal, useTransactions
-├── pages/            # CardsPage + placeholder pages
-├── styles/           # Global CSS (Tailwind directives)
-└── utils/            # cardUtils (generate card number, expiry, CVV, formatCurrency)
-```
+- **React 18 + Vite** — fast dev server, modern React features
+- **Tailwind CSS** — utility-first styling, easy to match designs pixel perfectly
+- **React Router v6** — client-side routing for the sidebar navigation
+- **Context API + useReducer** — global state management without any extra libraries
+- **localStorage** — lightweight persistence, no backend needed
 
 ## Getting Started
 
 ```bash
-# 1. Install dependencies
 npm install
-
-# 2. Start dev server
 npm run dev
-
-# 3. Open in browser
-http://localhost:5173/cards
 ```
 
+Open [http://localhost:5173/cards](http://localhost:5173/cards)
+
 ## Features
+- Add new card via modal — cardholder name entered by user, card number and expiry auto-generated
+- Freeze / Unfreeze card — toggles card status, frozen card turns greyscale with an overlay
+- Card carousel — navigate between multiple cards with arrows and dot indicators
+- Show / hide card number — masked by default, reveal on toggle
+- Data persists in localStorage — cards survive page refresh, two seed cards loaded on first visit
 
-- **Card carousel** – navigate between multiple cards with prev/next arrows and dot indicators
-- **Add new card** – opens a modal, enter cardholder name, card number + expiry auto-generated
-- **Freeze / Unfreeze** – toggles card status; frozen cards render with greyscale + overlay
-- **Show / Hide card number** – toggle masked ↔ full card number and CVV
-- **Card details accordion** – collapsible panel showing card metadata
-- **Recent transactions accordion** – collapsible panel with dummy transaction data
-- **Persistence** – cards stored in `localStorage`, survive page refresh
-- **Routing** – `/cards`, `/home`, `/payments`, `/credit`, `/settings`
+## Approach
 
-## Design Decisions
+### Folder Structure
+I organised the project by responsibility rather than file type. The `components/` folder is split into `ui/` (dumb, reusable atoms like Button, Input, Modal, Accordion) and `cards/` (smart components connected to state like CardCarousel, CardActions). Pages are thin composers that just assemble components together.
 
-- **Context API over Redux** — the state surface is small (cards array + active card). Context + useReducer is sufficient and avoids extra dependencies.
-- **API layer** (`src/api/cardsApi.js`) — all data access goes through async functions that simulate network latency. Swapping in a real API requires changing only this file.
-- **Dummy data seeded on first load** — two cards are written to `localStorage` on the first visit so the UI is never empty.
-- **Icon library centralised** (`src/components/ui/Icon.jsx`) — all SVG icons live in one file; import by name everywhere else.
+### State Management
+I used Context API with `useReducer` instead of Redux. The state is simple — just a cards array and an active card ID — so there was no need for the extra complexity. All state transitions (load, add, update, set-active) go through a single reducer with explicit action types, making the data flow easy to follow.
+
+### Testing
+I have written test cases for every component using React Testing Library to ensure each piece of UI behaves correctly in isolation.
+
+### API Layer
+All data access is abstracted into `src/api/cardsApi.js` as async functions with a simulated delay. Components never touch localStorage directly. This means if a real backend is added later, only this one file needs to change — nothing else in the app is affected.
+
+### Reusable UI Components
+All SVG icons are centralised in `Icon.jsx` and referenced by name. The Modal component uses `ReactDOM.createPortal` to render at `document.body` level so it can never be clipped by a parent element's overflow or z-index.
