@@ -3,7 +3,7 @@
 A frontend implementation of the Aspire business banking UI built as part of a frontend engineering challenge.
 
 ## Live Demo
-🔗 [your-deployment-url.vercel.app](https://your-deployment-url.vercel.app/cards)
+🔗 [https://aspire-dashboard-qy6o.vercel.app/cards](https://aspire-dashboard-qy6o.vercel.app/cards)
 
 ## Tech Stack
 - **React 18 + Vite** — fast dev server, modern React features
@@ -19,7 +19,7 @@ npm install
 npm run dev
 ```
 
-Open [http://localhost:5173/cards](http://localhost:5173/cards)
+Open [http://localhost:5173/](http://localhost:5173/)
 
 ## Features
 - Add new card via modal — cardholder name entered by user, card number and expiry auto-generated

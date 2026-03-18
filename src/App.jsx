@@ -10,7 +10,7 @@ export default function App() {
   return (
     <Routes>
       <Route path="/" element={<AppLayout />}>
-        <Route index element={<Navigate to="/home" replace />} />
+        <Route index element={<Navigate to="/cards" replace />} />
         <Route path="home"     element={<HomePage />}     />
         <Route path="cards"    element={<CardsPage />}    />
         <Route path="payments" element={<PaymentsPage />} />
