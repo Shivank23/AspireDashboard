@@ -3,7 +3,7 @@
 A frontend implementation of the Aspire business banking UI built as part of a frontend engineering challenge.
 
 ## Live Demo
-🔗 [https://aspire-dashboard-qy6o.vercel.app/cards](https://aspire-dashboard-qy6o.vercel.app/cards)
+🔗 https://aspire-dashboard-bcog.vercel.app/cards
 
 ## Tech Stack
 - **React 18 + Vite** — fast dev server, modern React features
