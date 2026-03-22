@@ -48,7 +48,7 @@ export default function DebitCard({ card }) {
           </div>
         </div>
 
-        <p className="text-white text-base sm:text-lg font-bold mb-3 sm:mb-5 relative z-10">
+        <p className="text-white text-base sm:text-lg font-bold mb-3 sm:mb-5 relative z-10 pr-8">
           {card.cardholderName}
         </p>
 
