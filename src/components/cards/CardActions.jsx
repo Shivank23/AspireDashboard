@@ -21,8 +21,8 @@ export default function CardActions() {
   }
 
   return (
-    <div className="bg-aspire-blue-light rounded-2xl px-6 py-5 mt-4">
-      <div className="grid grid-cols-5 gap-3">
+    <div className="bg-aspire-blue-light rounded-2xl px-4 md:px-6 py-4 md:py-5 mt-4">
+      <div className="grid grid-cols-3 sm:grid-cols-5 gap-2 md:gap-3">
         {ACTIONS.map((action) => {
           const label = action.id === 'freeze' && isFrozen ? action.frozenLabel : action.baseLabel
           const isActive = action.id === 'freeze' && isFrozen
@@ -34,11 +34,11 @@ export default function CardActions() {
               className="flex flex-col items-center gap-2 group"
               aria-label={label}
             >
-              <div className={`w-12 h-12 rounded-full flex items-center justify-center transition-colors duration-150
+              <div className={`w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center transition-colors duration-150
                 ${isActive ? 'bg-aspire-green' : 'bg-aspire-blue group-hover:bg-blue-700'}`}>
                 {action.id === 'gpay'
                   ? <span className="text-white text-sm font-bold">G</span>
-                  : <Icon name={action.icon} className="w-5 h-5 text-white" />
+                  : <Icon name={action.icon} className="w-4 h-4 md:w-5 md:h-5 text-white" />
                 }
               </div>
               <span className="text-xs text-center text-gray-600 leading-tight">{label}</span>

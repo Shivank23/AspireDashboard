@@ -33,9 +33,9 @@ export default function CardsPage() {
   }
 
   return (
-    <div className="max-w-5xl mx-auto px-10 py-10">
+    <div className="max-w-5xl mx-auto px-4 md:px-8 py-6 md:py-10">
       {/* Header */}
-      <div className="flex items-start justify-between mb-8">
+      <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-8">
         <div>
           <p className="text-xs text-gray-400 uppercase tracking-widest mb-2">
             Available balance
@@ -44,17 +44,18 @@ export default function CardsPage() {
             <span className="bg-aspire-green text-white text-xs font-bold px-2 py-0.5 rounded">
               S$
             </span>
-            <span className="text-4xl font-bold text-gray-900">3,000</span>
+            <span className="text-3xl md:text-4xl font-bold text-gray-900">3,000</span>
           </div>
         </div>
-        <Button onClick={open} variant="primary" size="md">
+        <Button onClick={open} variant="primary" size="md" className="self-start sm:self-auto">
           <Icon name="plus" className="w-4 h-4" />
-          New card
+          <span className="hidden sm:inline">New card</span>
+          <span className="sm:hidden">Add</span>
         </Button>
       </div>
 
       {/* Tabs */}
-      <div className="flex gap-8 border-b border-gray-200 mb-8">
+      <div className="flex gap-4 md:gap-8 border-b border-gray-200 mb-8 overflow-x-auto">
         {[
           { id: 'my',  label: 'My debit cards'    },
           { id: 'all', label: 'All company cards'  },
@@ -62,7 +63,7 @@ export default function CardsPage() {
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
-            className={`pb-3 text-sm font-semibold border-b-2 -mb-px transition-colors duration-150
+            className={`pb-3 text-sm font-semibold border-b-2 -mb-px transition-colors duration-150 whitespace-nowrap
               ${activeTab === tab.id
                 ? 'border-aspire-green text-gray-900'
                 : 'border-transparent text-gray-400 hover:text-gray-600'
@@ -73,8 +74,8 @@ export default function CardsPage() {
         ))}
       </div>
 
-      {/* Two-column layout */}
-      <div className="grid grid-cols-2 gap-10">
+      {/* Two-column layout - stacks on mobile */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10">
         <div>
           <CardCarousel />
           <CardActions />
